@@ -1,0 +1,24 @@
+# Git LFS tracking for large files
+
+# PDFs (books, papers)
+resources/books/pdfs/**/*.pdf filter=lfs diff=lfs merge=lfs -text
+resources/papers/**/*.pdf filter=lfs diff=lfs merge=lfs -text
+
+# Large datasets (if any)
+*.parquet filter=lfs diff=lfs merge=lfs -text
+*.h5 filter=lfs diff=lfs merge=lfs -text
+*.hdf5 filter=lfs diff=lfs merge=lfs -text
+
+# Model files
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.joblib filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
+*.onnx filter=lfs diff=lfs merge=lfs -text
+
+# Archive files
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+
+# Image files (if large)
+*.psd filter=lfs diff=lfs merge=lfs -text
