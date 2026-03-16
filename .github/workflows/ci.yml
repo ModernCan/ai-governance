@@ -46,7 +46,13 @@ jobs:
           pip install -e ".[dev]"
 
       - name: Run MyPy
-        run: mypy tools apps
+        run: |
+          # Only run if there are Python files to check
+          if find tools apps -name "*.py" -not -path "*/\.*" | grep -q .; then
+            mypy tools apps
+          else
+            echo "No Python files found yet - skipping type check"
+          fi
 
   test:
     name: Test
@@ -54,7 +60,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -70,7 +76,13 @@ jobs:
           pip install -e ".[dev]"
 
       - name: Run tests
-        run: pytest
+        run: |
+          # Only run if there are test files
+          if find tests -name "test_*.py" -o -name "*_test.py" | grep -q .; then
+            pytest
+          else
+            echo "No tests found yet - skipping"
+          fi
 
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
@@ -96,7 +108,13 @@ jobs:
           pip install mkdocs mkdocs-material
 
       - name: Build docs
-        run: mkdocs build --strict
+        run: |
+          # Only build if mkdocs.yml exists
+          if [ -f "mkdocs.yml" ]; then
+            mkdocs build --strict
+          else
+            echo "mkdocs.yml not found yet - skipping docs build"
+          fi
 
   security:
     name: Security Check

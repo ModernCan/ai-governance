@@ -79,7 +79,7 @@ Working demonstrations and step-by-step tutorials.
 ## Quick Start
 
 ### Prerequisites
-- Python 3.9 or higher
+- Python 3.11 or higher (3.11 recommended)
 - Git with LFS support (for large resources)
 
 ### Installation
