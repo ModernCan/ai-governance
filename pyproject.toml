@@ -42,7 +42,11 @@ Documentation = "https://github.com/shervin-ai/ai-governance/tree/main/docs"
 Repository = "https://github.com/shervin-ai/ai-governance"
 Issues = "https://github.com/shervin-ai/ai-governance/issues"
 
-# Package discovery - uncomment when you add actual Python packages
+# Package discovery - no packages yet, explicitly set to empty
+[tool.setuptools]
+packages = []
+
+# Uncomment when you add actual Python packages:
 # [tool.setuptools.packages.find]
 # where = ["tools", "apps"]
 # namespaces = true
